@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- llamar el  -->
+<html ng-app="p">
+	<head>
+		<!-- enlazar jquery -->
+		<script src="lib/jquery.js"></script>
+		<title>Clima</title>
+		<!-- enlazar css -->
+		<link rel="stylesheet" href="css/style.css">
+		<!-- lib bootstrap -->
+		<link rel="stylesheet" href="lib/boo/css/bootstrap.css">
+		<!-- google fonts -->
+		<!--01000111 01100001 01100010 01110010 01101001 01100101 01101100 01100001 00100000 01010010 01101111 01100011 01100001-->
+		<link href="https://fonts.googleapis.com/css?family=Amita|BenchNine|Boogaloo|Chau+Philomene+One|Chewy|Cookie|Euphoria+Script|Great+Vibes|Handlee|KoHo|Merienda|Merienda+One|Open+Sans+Condensed:300|Poiret+One|Pontano+Sans|Rancho|Rochester|Satisfy|Shadows+Into+Light+Two|Sue+Ellen+Francisco|Tulpen+One|Wire+One&display=swap" rel="stylesheet">
+		<!-- enlazar iconos -->
+    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	</head>
+	<body ng-controller="ClimaCtrl">
+
+		<!--contenedor-->
+		<div class="container-fluid fondoNegro">
+			<div class="row ">
+				<div class="col-md-12 centrado">
+					<h1 class="titulo centrado"><b>Clima</b></h1>	
+				</div>
+			</div>
+		</div>
+
+		<!--contenedor-->
+		<div class="container-fluid">
+			<!-- introducir el nombre del departamento-->
+			<div class="container">
+				<br>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Departamento" aria-describedby="button-addon2" ng-model="PaisIngresado">
+					<div class="input-group-append">
+				    	<button class="btn btn-outline-secondary" type="button" id="button-addon2" ng-click="ObtenerClima(PaisIngresado)"><i class="fas fa-search"></i></button>
+				  	</div>
+				</div>
+			</div>
+			
+			<br>
+
+			<!--row donde se muestran datos-->
+			<div class="row">
+				<div class="col-md-2 col-sm-12 col-xs-12">
+					
+				</div>
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					<!--div imagen -->
+					<div class="container fondoImg">
+						<div class="col-md-12 col-xs-12">
+							<img src="img/icono.png" class="icono">
+						</div>
+						<div class="col-md-12 col-xs-12">
+							<h1 class="txtT padding">Weather<span><h4 class="txtT">Guatemala</h4></span></h1>
+							<br>
+						</div>
+
+					</div>
+					<!-- div informacion-->
+					<div class="container-fluid divImg padding" ng-repeat="x in Listado">
+						<div class="row">
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<br>
+								<i class="fas fa-map-marker-alt ubicacion"></i>
+								{{x.data.city.name}}
+								<br>
+								<i class="fas fa-cloud-sun-rain ubicacion"></i>
+								<b>Clima: </b>{{x.data.list["0"].weather["0"].description}}
+								<br>
+								<i class="fas fa-cloud ubicacion"></i>
+								<b>Nubes: </b>{{x.data.list["0"].clouds.all}}
+								<br>
+								<i class="fas fa-wind ubicacion"></i>
+								<b>Velocidad del Viento: </b>{{x.data.list["0"].wind.speed}}
+								<br>
+								<i class="fas fa-temperature-low ubicacion"></i>
+								<b>Viento en Grados: </b>{{x.data.list["0"].wind.deg}}
+								<br>
+								<i class="fas fa-tint ubicacion"></i>
+								<b>Humedad: </b>{{x.data.list["0"].main.humidity}}
+								<br>
+								<i class="fas fa-temperature-high ubicacion"></i>
+								<b>Temperatura: </b>{{x.data.list["0"].main.temp}}
+								<br><br>
+							</div>
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<br>
+								<i class="fas fa-temperature-high ubicacion"></i>
+								<b>Temperatura max: </b>{{x.data.list["0"].main.temp_max}}
+								<br>
+								<i class="fas fa-temperature-low ubicacion"></i>
+								<b>Temperatura min: </b>{{x.data.list["0"].main.temp_min}}
+								<br>
+								<i class="fas fa-map-marked-alt ubicacion"></i>
+								<b>Coordenadas: </b>
+								<br>
+								<b>Latitud: </b>{{x.data.city.coord.lat}}
+								<br>
+								<b>Longitud: </b>{{x.data.city.coord.lon}}
+								<br>
+								<i class="fas fa-users ubicacion"></i>
+								<b>Población: </b>{{x.data.city.population}}
+								<br>
+								<i class="far fa-clock ubicacion"></i><b>  {{x.data.list["0"].dt_txt}}</b>
+								<br><br>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+
+
+		<script src="lib/angular.js"></script>
+		<script src="lib/boo/js/bootstrap.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>
